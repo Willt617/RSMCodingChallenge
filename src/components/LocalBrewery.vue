@@ -4,7 +4,7 @@
     :items="states"
     v-model="state"
     label="Select State"
-    :change="getBreweriesList(state, 1)"
+    :change="getBreweriesList(state, 1, true)"
   ></v-select>
 
   <v-row>
@@ -45,7 +45,7 @@
         <v-pagination
           v-model="page"
           :length="5"
-          :change="getBreweriesList(state, page)"
+          :change="getBreweriesList(state, page, false)"
         ></v-pagination>
       </v-row>
     </v-container>
@@ -121,8 +121,11 @@ export default {
   computed: {},
   watch: {},
   methods: {
-    async getBreweriesList(state, page) {
+    async getBreweriesList(state, page, stateChange) {
       state = state.replace(" ", "_");
+      if (stateChange) {
+        page = 1;
+      }
       console.log("State: ", state);
       let response = await axios.get(
         "https://api.openbrewerydb.org/breweries?by_state=" +
@@ -158,6 +161,8 @@ h1 {
   font-weight: 500;
   font-size: 2.6rem;
   top: -10px;
+  color: yellow;
+  text-align: center;
 }
 
 h3 {

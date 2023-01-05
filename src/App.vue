@@ -1,11 +1,11 @@
 <script setup>
-import HelloWorld from "./components/HelloWorld.vue";
+import LocalBrewery from "./components/LocalBrewery.vue";
 </script>
 
 <template>
-    <div class="wrapper">
-      <HelloWorld/>
-    </div>
+  <div class="wrapper">
+    <LocalBrewery />
+  </div>
 </template>
 
 <style scoped>
